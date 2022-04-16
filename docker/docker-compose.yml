@@ -1,0 +1,37 @@
+version: "3.9"
+    
+services:
+  
+#Create Nginx reverse proxy that proxies request to 3 services that are specified below
+  loadbalancer:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    restart: always
+    ports:
+      - "8080:80"
+
+#Service 1 is verti webapp    
+  verti:
+    build:
+      context: .
+      dockerfile: Dockerfile.verti
+    restart: always
+    #ports:
+      #- "8081:80"
+#Service 2 is miniport webapp
+  miniport:
+    build:
+      context: .
+      dockerfile: Dockerfile.miniport
+    restart: always
+    #ports:
+      #- "8082:80"
+#Service 3 is dopetrope webapp
+  dopetrope:
+    build:
+      context: .
+      dockerfile: Dockerfile.dopetrope
+    restart: always
+    #ports:
+      #- "8083:80"
